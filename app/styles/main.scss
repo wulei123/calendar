@@ -1,26 +1,28 @@
 // bower:scss
 // endbower
-
-body {
-  background: #fafafa;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  color: #333;
+$HfontSize:80px;
+$PfontSize:20px;
+$TfontSize:40px;
+$WeekFS:20px;
+$DataFS:100px;
+$h1:50px;
+$MainColor:rgba(255,100,100,1);
+$TabTColor:rgba(89,217,166,1);
+$TabBColor:rgba(131,119,245,1);
+html,body,.background,.topView{
+  margin:0;
+  padding: 0;
 }
-
-.hero-unit {
-  margin: 50px auto 0 auto;
-  width: 300px;
-  font-size: 18px;
-  font-weight: 200;
-  line-height: 30px;
-  background-color: #eee;
-  border-radius: 6px;
-  padding: 60px;
-  h1 {
-    font-size: 60px;
-    line-height: 1;
-    letter-spacing: -1px;
-  }
+html{
+  height:100%;
+  width:100%;
+}
+body {
+  height:100%;
+  width:100%;
+  background: #fafafa;
+  font-family: "微软雅黑 Light", 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #333;
 }
 
 .browserupgrade {
@@ -29,3 +31,185 @@ body {
   color: #000;
   padding: 0.2em 0;
 }
+.background{
+  position: relative;
+  width:100%;
+  height:100%;
+
+}
+.topView{
+  z-index: 1;
+  position: fixed;
+  width:100%;
+  height:100%;
+  background:$MainColor;
+  .show{
+    height:40%;
+    width:200px;
+    margin-left:auto;
+    margin-right:auto;
+    color: white;
+    position: relative;
+    text-align: center;
+    .week{
+
+      font-size:$WeekFS;
+    }
+    .data{
+      font-size:$DataFS;
+    }
+    .h1{
+
+    }
+  }
+}
+.underView{
+  position: absolute;
+  top:40%;
+  z-index: 2;
+  background: white;
+  width:100%;
+  height:100%;
+  color: gainsboro;
+  box-shadow: 0 -0.5px 5px ;
+  border-radius:0.5%;
+.calendar{
+  text-align: center;
+  color: black;
+  margin:5%;
+  padding:0;
+  width:90%;
+  height:50%;
+  tr{
+    margin:0;
+    padding:0;
+    td{
+      margin:0;
+      padding:0;
+
+    }
+    td:active{
+      background: $MainColor;
+    }
+  }
+  tr{
+    th:nth-child(1),th:nth-child(7){
+      color: $MainColor;
+    }
+    td:nth-child(1),td:nth-child(7){
+      color: $MainColor;
+    }
+  }
+}
+  .reminder{
+    width:100%;
+    height:40%;
+
+  }
+}
+.IncludeB{
+  position: fixed;
+  bottom: 2%;
+  z-index: 4;
+  height:50px;
+  margin-right: 40%;
+  width:20%;
+  margin-left: 40%;
+  .addButton{
+    overflow: hidden;
+    text-align: center;
+    vertical-align: inherit;
+    color: white;
+    font-size: 40px;
+    -webkit-transition: all 0.35s;
+    -moz-transition: all 0.35s;
+    -ms-transition: all 0.35s;
+    -o-transition: all 0.35s;
+    transition: all 0.35s;
+    margin-right: auto;
+    margin-left:auto;
+    z-index: 5;
+    height:50px;
+    width:50px;
+    box-shadow: 1px 1px 10px gainsboro;
+    border-radius: 25px;
+    background: $MainColor;
+    transform: rotate(0deg);
+  };
+  .addButton-active{
+
+    background: purple;
+    transform: rotate(135deg);
+
+  }
+}
+.addReminder{
+  z-index: 3;
+  position: fixed;
+  bottom: 10%;
+  margin-left: 10%;
+  margin-right: 10%;
+  height:85%;
+  width:80%;
+  background: $TabTColor;
+  border-radius: 5px;
+  box-shadow:$TabTColor 1px 1px 10px ;
+  transform-origin: 50% 100%;
+  transform: scale(0,0);
+  color: white;
+.TimeTittle{
+  background: $TabBColor;
+  box-shadow:$TabBColor 1px 1px 10px ;
+  margin: 0;
+  padding:0;
+  height:100px;
+  width:100%;
+  text-align: center;
+  color: white;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  p{
+    margin:0;
+    padding:0;
+  }
+  h1{
+    margin:0;
+    padding:0;
+    font-size: 60px;
+  }
+}
+
+}
+.addReminder-open{
+  animation: open 0.5s;
+  transform:scale(1,1) ;
+}
+@keyframes open{
+  0%{
+    opacity: 0;
+    transform: scale(0,0);
+  }
+  40%{
+    opacity: 0.4;
+    transform: scale(1,0.2);
+  }
+  100%{
+    opacity: 1;
+    transform:scale(1,1) ;
+  }
+}
+.addReminder-close{
+  animation: close 0.5s;
+  transform:scale(0,0) ;
+}
+@keyframes close{
+  0%{
+    opacity: 1;
+    transform: scale(1,1);
+  }
+  100%{
+    opacity: 0;
+    transform:scale(0,0) ;
+  }
+}
+
