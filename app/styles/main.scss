@@ -7,8 +7,8 @@ $WeekFS:20px;
 $DataFS:100px;
 $h1:50px;
 $MainColor:rgba(255,100,100,1);
-$TabTColor:rgba(89,217,166,1);
-$TabBColor:rgba(131,119,245,1);
+$MainColor1:rgba(89,217,166,1);
+$MainColor2:rgba(131,119,245,1);
 html,body,.background,.topView{
   margin:0;
   padding: 0;
@@ -69,42 +69,82 @@ body {
   z-index: 2;
   background: white;
   width:100%;
-  height:100%;
+  height:auto;
   color: gainsboro;
   box-shadow: 0 -0.5px 5px ;
   border-radius:0.5%;
-.calendar{
-  text-align: center;
-  color: black;
-  margin:5%;
+  overflow: hidden;
+.containercc{
+  margin:0;
   padding:0;
-  width:90%;
-  height:50%;
-  tr{
-    margin:0;
+  width:100%;
+  height:380px;
+  .calendar:nth-child(1){
+    top:0;
+    left:0;
+  }
+  .calendar:nth-child(2){
+    top:0;
+    left:100%;
+  }
+  .calendar:nth-child(3){
+    top:0;
+    left:200%;
+  }
+  .calendar{
+    position: absolute;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+    text-align: center;
+    color: black;
+    margin:5%;
     padding:0;
-    td{
+    width:90%;
+    height:350px;
+    tr{
       margin:0;
       padding:0;
+      td{
+        margin:0;
+        padding:0;
 
+      }
+      td:active{
+        background: $MainColor;
+      }
     }
-    td:active{
-      background: $MainColor;
-    }
-  }
-  tr{
-    th:nth-child(1),th:nth-child(7){
-      color: $MainColor;
-    }
-    td:nth-child(1),td:nth-child(7){
-      color: $MainColor;
+    tr{
+      th:nth-child(1),th:nth-child(7){
+        color: $MainColor;
+      }
+      td:nth-child(1),td:nth-child(7){
+        color: $MainColor;
+      }
     }
   }
 }
   .reminder{
     width:100%;
-    height:40%;
-
+    height:auto;
+.addThings{
+  margin-left:auto;
+  margin-right:auto;
+  padding-top:13px;
+  height:37px;
+  width:80%;
+  border-radius: 5px;
+  background: $MainColor;
+  box-shadow: lighten($MainColor,20%) 1px 1px 10px;
+  text-align: center;
+  font-size:20px;
+  color: white;
+}
+    .addThings:active{
+      background: lighten($MainColor,10%);
+    }
   }
 }
 .IncludeB{
@@ -137,79 +177,11 @@ body {
     transform: rotate(0deg);
   };
   .addButton-active{
-
     background: purple;
     transform: rotate(135deg);
 
   }
 }
-.addReminder{
-  z-index: 3;
-  position: fixed;
-  bottom: 10%;
-  margin-left: 10%;
-  margin-right: 10%;
-  height:85%;
-  width:80%;
-  background: $TabTColor;
-  border-radius: 5px;
-  box-shadow:$TabTColor 1px 1px 10px ;
-  transform-origin: 50% 100%;
-  transform: scale(0,0);
-  color: white;
-.TimeTittle{
-  background: $TabBColor;
-  box-shadow:$TabBColor 1px 1px 10px ;
-  margin: 0;
-  padding:0;
-  height:100px;
-  width:100%;
-  text-align: center;
-  color: white;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-  p{
-    margin:0;
-    padding:0;
-  }
-  h1{
-    margin:0;
-    padding:0;
-    font-size: 60px;
-  }
-}
 
-}
-.addReminder-open{
-  animation: open 0.5s;
-  transform:scale(1,1) ;
-}
-@keyframes open{
-  0%{
-    opacity: 0;
-    transform: scale(0,0);
-  }
-  40%{
-    opacity: 0.4;
-    transform: scale(1,0.2);
-  }
-  100%{
-    opacity: 1;
-    transform:scale(1,1) ;
-  }
-}
-.addReminder-close{
-  animation: close 0.5s;
-  transform:scale(0,0) ;
-}
-@keyframes close{
-  0%{
-    opacity: 1;
-    transform: scale(1,1);
-  }
-  100%{
-    opacity: 0;
-    transform:scale(0,0) ;
-  }
-}
+
 
