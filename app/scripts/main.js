@@ -11,23 +11,30 @@ $(document).ready(function () {
 
   $('.calendar').on('touchstart',function (e) {
     var touch = e.originalEvent.targetTouches[0];
-    var x = touch.clientX - $(this).offset().left;
+    var x = touch.clientX;
     console.log('left'+$(this).offset().left);
     console.log(x);
     $(this).on('touchmove',function (e) {
       var touch = e.originalEvent.targetTouches[0];
-      var tmp1 = touch.clientX - x;
+      var tmp1 = 0;
+      tmp1 = touch.clientX - x;
+      console.log('tmp1='+tmp1);
       console.log('change '+tmp1+' '+$(this).index())
-      $(this).on('touchend',function (e) {
-        if(tmp1>100){
-          last($(this).index());
-        }else if(tmp1<-100){
-          next($(this).index());
-        }
-      });
+      if(tmp1>80){
+        last($(this).index());
+      }else if(tmp1<-80){
+        next($(this).index());
+      }else{
+        keep($(this).index());
+      }
 
     })
   })
+  function keep(t) {
+    $('.calendar').css({
+      'transform':'translate(-'+t*111.11111+'%,0)'
+    });
+  }
   function last(t){
     t--;
     if(t<0)
