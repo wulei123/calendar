@@ -6,9 +6,9 @@ $TfontSize:40px;
 $WeekFS:20px;
 $DataFS:100px;
 $h1:50px;
-$MainColor:rgba(255,100,100,1);
-$MainColor1:rgba(89,217,166,1);
-$MainColor2:rgba(131,119,245,1);
+$MainColor1:rgba(255,100,100,1);
+$MainColor2:rgba(89,217,166,1);
+$MainColor:rgba(131,119,245,1);
 $ChosenColor:white;
 html,body,.background,.topView{
   margin:0;
@@ -65,6 +65,11 @@ body {
   }
 }
 .underView{
+  -webkit-transition: all 0.35s;
+  -moz-transition: all 0.35s;
+  -ms-transition: all 0.35s;
+  -o-transition: all 0.35s;
+  transition: all 0.35s;
   position: absolute;
   top:40%;
   z-index: 2;
@@ -169,7 +174,7 @@ overflow: visible;
         border-radius:50%;
 
       }
-      td p:hover{
+      .p-active{
         color: $ChosenColor;
         background: $MainColor;
       }
@@ -185,45 +190,116 @@ overflow: visible;
   }
 }
   .reminder{
-
+    -webkit-transition: transform 0.35s;
+    -moz-transition: transform 0.35s;
+    -ms-transition: transform 0.35s;
+    -o-transition: transform 0.35s;
+    transition: transform 0.35s;
+    transform-origin:0 0;
+    -webkit-transform: scale(1,0);
+    -moz-transform: scale(1,0);
+    -ms-transform: scale(1,0);
+    -o-transform: scale(1,0);
+    transform: scale(1,0);
     width:100%;
     height:auto;
 .addThings{
   margin-top: 15px;
-  -webkit-transition: all 0.35s;
-  -moz-transition: all 0.35s;
-  -ms-transition: all 0.35s;
-  -o-transition: all 0.35s;
-  transition: all 0.35s;
-  transform-origin: 0 0;
-  -webkit-transform: scale(1,1);
-  -moz-transform: scale(1,1);
-  -ms-transform: scale(1,1);
-  -o-transform: scale(1,1);
-  transform: scale(1,1);
-  margin-left:auto;
-  margin-right:auto;
-  padding-top:13px;
-  height:37px;
+  margin-bottom: 20px;
+  margin-left:10%;
+  margin-right:10%;
+  border:0;
+  height:50px;
   width:80%;
   border-radius: 5px;
   background: $MainColor;
   box-shadow: lighten($MainColor,20%) 1px 1px 10px;
   text-align: center;
+  font-family: "微软雅黑 Light", 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size:20px;
   color: white;
 }
-    .addThings-active{
-      -webkit-transform: scale(1,0);
-      -moz-transform: scale(1,0);
-      -ms-transform: scale(1,0);
-      -o-transform: scale(1,0);
-      transform: scale(1,0);
+    .addThings:active{
       background: lighten($MainColor,10%);
-      height:0;
     }
   }
+  .reminder-show{
+    -webkit-transform: scale(1,1);
+    -moz-transform: scale(1,1);
+    -ms-transform: scale(1,1);
+    -o-transform: scale(1,1);
+    transform: scale(1,1);
+  }
+  .myPlan{
+    margin-top:10px;
+    height:100px;
+    width:100%;
+    position: relative;
+    box-shadow: gainsboro 1px 1px 10px;
+    p{
+      margin:0;
+      padding-left:20px;
+      padding-top:8px;
+      height:20px;
+    }
+    p:nth-child(1){
+      color: $MainColor;
+    }
+    p:nth-child(2){
+      color: black;
+      word-break:break-all;
+    }
+    .editButton{
+      position: absolute;
+      right:15px;
+      top:30px;
+      height:40px;
+      width:80px;
+      border:0;
+      font-family: "微软雅黑 Light", 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size:18px;
+      color: white;
+      background: $MainColor;
+      border-radius: 5px;
+      box-shadow: lighten($MainColor,10%) 1px 1px 10px;
+    }
+    .editButton:active{
+      background: lighten($MainColor,10%);
+    }
+  }
+}
+.inputBackgrund {
+  z-index: 8;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  -webkit-transition: transform 0.35s;
+  -moz-transition: transform 0.35s;
+  -ms-transition: transform 0.35s;
+  -o-transition: transform 0.35s;
+  transition: transform 0.35s;
+  transform-origin:0 15%;
+  -webkit-transform: scale(1, 0);
+  -moz-transform: scale(1, 0);
+  -ms-transform: scale(1, 0);
+  -o-transform: scale(1, 0);
+  transform: scale(1, 0);
+
+}
+.inputBackgrund-show{
+  -webkit-transform: scale(1, 1);
+  -moz-transform: scale(1, 1);
+  -ms-transform: scale(1, 1);
+  -o-transform: scale(1, 1);
+  transform: scale(1, 1);
+}
   .inputBorder{
+    z-index: 10;
+    position: fixed;
+    top:5%;
+    height:300px;
+    width:100%;
+    background: rgba(255,255,255,0.95);
     box-shadow:gainsboro  1px 1px 10px;
     -webkit-transition: all 0.35s;
     -moz-transition: all 0.35s;
@@ -237,6 +313,7 @@ overflow: visible;
     transform:scale(1,0);
     margin-bottom:40px;
     p{
+      padding-top:5px;
       margin-left: 30%;
       width:40%;
       text-align: center;
@@ -246,6 +323,8 @@ overflow: visible;
       margin-left:2%;
       margin-right:3%;
       width:95%;
+      font-family: "微软雅黑 Light", 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size:20px;
       border: none;
       resize: none;
       border-radius: 4px;
@@ -255,7 +334,7 @@ overflow: visible;
     .checkButton{
       position: absolute;
       bottom: -20px;
-
+      overflow: hidden;
       height:50px;
       width:50px;
       border-radius: 50%;
@@ -286,18 +365,7 @@ overflow: visible;
     -o-transform:  scale(1,1);
     transform: scale(1,1);
   }
-  .myPlan{
-    height:100px;
-    width:100%;
-    box-shadow: gainsboro 1px 1px 10px;
-    p{
-      margin:0;
-      padding-left:20px;
-      padding-top:25px;
-      height:20px;
-    }
-  }
-}
+
 
 
 
