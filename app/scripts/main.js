@@ -1,4 +1,4 @@
-console.log('\'Allo \'Allo!');
+
 $(document).ready(function () {
   $('.addButton').click(function () {
     if($(this).hasClass('addButton-active')){
@@ -10,6 +10,7 @@ $(document).ready(function () {
   });
 
   $('.calendar').on('touchstart',function (e) {
+    getIndex($(this).index());
     var touch = e.originalEvent.targetTouches[0];
     var x = touch.clientX;
     console.log('left'+$(this).offset().left);
@@ -30,6 +31,22 @@ $(document).ready(function () {
 
     })
   })
+  var x=0;
+ if($('.calendar tr p').width()>$('.calendar tr td p').height()){
+   x = $('.calendar tr p').height();
+ }else{
+   x = $('.calendar tr p').width();
+ }
+  $('.calendar tr p').css({
+    'height':x/2+10+'px',
+    'width':x+'px',
+    'padding-top':x/2-10+'px'
+  }
+  );
+  var T;
+function getIndex(t){
+  T=t;
+}
   function keep(t) {
     $('.calendar').css({
       'transform':'translate(-'+t*111.11111+'%,0)'
@@ -37,52 +54,43 @@ $(document).ready(function () {
   }
   function last(t){
     t--;
-    if(t<0)
+    if(t<0){
       t=0;
+    }
     $('.calendar').css({
       'transform':'translate(-'+t*111.11111+'%,0)'
     });
   }
   function next(t){
     t++;
-    if(t>2)
-      t=2;
+    if(t>5){
+      t=5;
+    }
+
     $('.calendar').css({
       'transform':'translate(-'+t*111.11111+'%,0)'
     });
   }
-
-  /*
-
-   document.getElementById("calendar").addEventListener('touchstart',function (e) {
-   var x=e.touches[0].pageX;
-   //console.log(e.touches[0].clientX);
-   document.addEventListener('touchmove',function (e) {
-   //console.log(e.touches[0].clientX);
-   var tmp1 = e.touches[0].pageX-x;
-   if(tmp1>100){
-   $('.calendar').css({
-   'transform':'translate('+1000/9+'%,0)'
-   });
-   }else if(tmp1<-100){
-   $('.calendar').css({
-   'transform':'translate(-'+1000/9+'%,0)'
-   });
-   }else{
-   $('.calendar').css({
-   'transform':'translate(0,0)',
-   });
-   }
-
-   })
-   },false);
+  $('.calendar tr .last p').click(function () {
+    last(T);
+  });
+  $('.calendar tr .next p').click(function () {
+    next(T);
+  });
 
 
-
-   */
-
-
-
+  $('.addThings').on('touchstart',function () {
+    $(this).addClass('addThings-active');
+    $('.inputBorder').addClass('inputBorder-active');
+  });
+  $('#yes').on('touchstart',function () {
+    $('.addThings').removeClass('addThings-active');
+    $('.inputBorder').removeClass('inputBorder-active');
+  });
+  $('#no').on('touchstart',function () {
+    $('.addThings').removeClass('addThings-active');
+    $('.inputBorder').removeClass('inputBorder-active');
+  });
 
 
 });
