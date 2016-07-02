@@ -1,5 +1,7 @@
 
 $(document).ready(function () {
+
+  alertError("请选择日期后添加计划哦");
   $('.addButton').click(function () {
     if($(this).hasClass('addButton-active')){
       $(this).removeClass('addButton-active');
@@ -15,8 +17,8 @@ $(document).ready(function () {
     var x = touch.clientX;
     console.log('left'+$(this).offset().left);
     console.log(x);
-    $(this).on('touchmove',function (e) {
-      var touch = e.originalEvent.targetTouches[0];
+    $(this).on('touchend',function (e) {
+      var touch = e.originalEvent.changedTouches[0];
       var tmp1 = 0;
       tmp1 = touch.clientX - x;
       console.log('tmp1='+tmp1);
@@ -57,6 +59,7 @@ function getIndex(t){
     if(t<0){
       t=0;
     }
+
     $('.data').text('UPC');
     $('.calendar').css({
       'transform':'translate(-'+t*111.11111+'%,0)'
@@ -67,6 +70,7 @@ function getIndex(t){
     if(t>5){
       t=5;
     }
+
     $('.data').text('UPC');
 
     $('.calendar').css({
@@ -81,7 +85,6 @@ function getIndex(t){
   });
 
 
-
 $('td p').click(function () {
   $('td p').removeClass('p-active');
   $(this).addClass('p-active');
@@ -94,7 +97,7 @@ $('td p').click(function () {
 
 
   $('.addThings').on('click',function () {
-    $('.data').text('');
+    $('#data').text('');
     $('.inputBorder').addClass('inputBorder-active');
     $('.inputBackgrund').addClass('inputBackgrund-show');
   });
@@ -106,10 +109,6 @@ $('td p').click(function () {
     $('.inputBorder').removeClass('inputBorder-active');
     $('.inputBackgrund').removeClass('inputBackgrund-show');
   });
-
-
-
-
 
 
   $('.editButton').on('click',function () {
@@ -120,6 +119,9 @@ $('td p').click(function () {
   $('#yes').on('click',function () {
     $('.inputBorder').removeClass('inputBorder-active');
     $('.inputBackgrund').removeClass('inputBackgrund-show');
+    if($('.inputPlace').val()==''){
+      alertError('输入不可为空');
+    }
   });
   $('#no').on('click',function () {
     $('.inputBorder').removeClass('inputBorder-active');
@@ -127,4 +129,15 @@ $('td p').click(function () {
   });
 
 });
+
+  function alertError(text) {
+    $('.alertError').text(text);
+    $('.alertError').removeClass('alertError-active');
+    $('.alertError').addClass('alertError-active');
+    setTimeout(function () {
+      $('.alertError').removeClass('alertError-active');
+    },1000);
+
+  }
+
 });
