@@ -1,7 +1,7 @@
 
 $(document).ready(function () {
 
-  alertError("请选择日期后添加计划哦");
+  alertError('请选择日期后添加计划哦');
   $('.addButton').click(function () {
     if($(this).hasClass('addButton-active')){
       $(this).removeClass('addButton-active');
@@ -84,52 +84,57 @@ function getIndex(t){
     next(T);
   });
 
-
 $('td p').click(function () {
+
   $('td p').removeClass('p-active');
   $(this).addClass('p-active');
+  var infor = $('.calendar').eq(T).find('.month').text()+$(this).text()
+  changeToId(infor);
   var date = $(this).text();
   $('.data').text(date);
   $('.reminder').removeClass('reminder-show');
-  $('.reminder').addClass('reminder-show');
+  setTimeout(function () {
+    $('.reminder').addClass('reminder-show');
+  },350);
 
 
 
 
   $('.addThings').on('click',function () {
     $('#data').text('');
-    $('.inputBorder').addClass('inputBorder-active');
-    $('.inputBackgrund').addClass('inputBackgrund-show');
+    inputShow()
   });
   $('#yes').on('click',function () {
-    $('.inputBorder').removeClass('inputBorder-active');
-    $('.inputBackgrund').removeClass('inputBackgrund-show');
+    inputHide();
   });
   $('#no').on('click',function () {
-    $('.inputBorder').removeClass('inputBorder-active');
-    $('.inputBackgrund').removeClass('inputBackgrund-show');
+    inputHide();
   });
 
 
   $('.editButton').on('click',function () {
     $('.inputPlace').text($(this).prev().text());
-    $('.inputBorder').addClass('inputBorder-active');
-    $('.inputBackgrund').addClass('inputBackgrund-show');
+    inputShow()
   });
   $('#yes').on('click',function () {
-    $('.inputBorder').removeClass('inputBorder-active');
-    $('.inputBackgrund').removeClass('inputBackgrund-show');
+    inputHide();
     if($('.inputPlace').val()==''){
       alertError('输入不可为空');
     }
   });
   $('#no').on('click',function () {
-    $('.inputBorder').removeClass('inputBorder-active');
-    $('.inputBackgrund').removeClass('inputBackgrund-show');
+    inputHide();
   });
 
 });
-
+function inputShow(){
+  $('.inputBorder').addClass('inputBorder-active');
+  $('.inputBackgrund').addClass('inputBackgrund-show');
+}
+  function inputHide(){
+    $('.inputBorder').removeClass('inputBorder-active');
+    $('.inputBackgrund').removeClass('inputBackgrund-show');
+  }
   function alertError(text) {
     $('.alertError').text(text);
     $('.alertError').removeClass('alertError-active');
@@ -139,5 +144,7 @@ $('td p').click(function () {
     },1000);
 
   }
+function changeToId(infor) {
 
+}
 });
